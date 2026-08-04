@@ -145,7 +145,7 @@ const UploadForm: React.FC<UploadFormProps> = ({
                 className="file:mr-4 file:py-1 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-purple-100 file:text-purple-700 hover:file:bg-purple-200"
               />
               <p className="left-0 mt-2 text-sm text-muted-foreground">
-                Supported formats: PDF, DOC, DOCX (Max size: 10MB)
+                Supported formats: PDF, PPT, PPTX, DOC, DOCX (Max size: 10MB)
               </p>
             </div>
 

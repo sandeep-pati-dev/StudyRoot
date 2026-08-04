@@ -1,7 +1,8 @@
-  import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { motion } from "framer-motion";
 import {
   Card,
   CardContent,
@@ -108,8 +109,19 @@ const Courses = () => {
         </div>
 
         {/* Course Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {courses.map((course) => {
+        <motion.div
+          variants={{
+            hidden: { opacity: 0 },
+            show: {
+              opacity: 1,
+              transition: { staggerChildren: 0.05 }
+            }
+          }}
+          initial="hidden"
+          animate="show"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          {filteredCourses.map((course) => {
             const metaKey = Object.keys(courseMeta).find(key => course.name.startsWith(key));
 
             const meta = courseMeta[metaKey] || courseMeta.others;
@@ -117,34 +129,41 @@ const Courses = () => {
             const color = meta.color || "from-gray-500 to-slate-500";
 
             return (
-              <Card
+              <motion.div
                 key={course._id}
-                className="group bg-card/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] cursor-pointer"
-                onClick={() => navigate(`/dashboard/${course._id}`)}
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 120, damping: 14 } }
+                }}
               >
-                <CardHeader className="text-center pb-4">
-                  <div
-                    className={`w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-r ${color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}
-                  >
-                    <IconComponent className="h-8 w-8 text-foreground" />
-                  </div>
-                  <CardTitle className="text-2xl font-bold text-foreground group-hover:text-uninote-blue transition-colors">
-                    {course.name}
-                  </CardTitle>
+                <Card
+                  className="group bg-card/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] cursor-pointer"
+                  onClick={() => navigate(`/dashboard/${course._id}`)}
+                >
+                  <CardHeader className="text-center pb-4">
+                    <div
+                      className={`w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-r ${color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}
+                    >
+                      <IconComponent className="h-8 w-8 text-foreground" />
+                    </div>
+                    <CardTitle className="text-2xl font-bold text-foreground group-hover:text-uninote-blue transition-colors">
+                      {course.name}
+                    </CardTitle>
 
-                  <div className="text-sm text-muted-foreground mt-2">
-                    {course.totalSemesters} Semesters
-                  </div>
-                </CardHeader>
-                <CardContent className="text-center">
-                  <Button className="w-full bg-gradient-to-r from-uninote-blue to-uninote-purple hover:from-uninote-purple hover:to-uninote-blue text-white font-medium rounded-xl transition-all duration-300">
-                    View Semesters
-                  </Button>
-                </CardContent>
-              </Card>
+                    <div className="text-sm text-muted-foreground mt-2">
+                      {course.totalSemesters} Semesters
+                    </div>
+                  </CardHeader>
+                  <CardContent className="text-center">
+                    <Button className="w-full bg-gradient-to-r from-uninote-blue to-uninote-purple hover:from-uninote-purple hover:to-uninote-blue text-white font-medium rounded-xl transition-all duration-300">
+                      View Semesters
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* Stats */}
         <StatsCard />

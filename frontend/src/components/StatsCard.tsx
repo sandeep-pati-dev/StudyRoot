@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { BookOpen, Download, GraduationCap } from "lucide-react";
 import axios from "@/lib/axiosInstance";
-import LoadingScreen from "./ui/LoadingScreen";
 
 const StatsCard = () => {
   const [stats, setStats] = useState({
@@ -34,7 +33,19 @@ const StatsCard = () => {
   }, []);
 
   if (loading) {
-    return <LoadingScreen />;
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 animate-pulse">
+        {[1, 2, 3].map((index) => (
+          <Card key={index} className="bg-card/40 backdrop-blur-md border border-border/40 rounded-2xl shadow-md">
+            <CardContent className="p-6 text-center">
+              <div className="w-12 h-12 mx-auto mb-4 rounded-2xl bg-muted" />
+              <div className="h-8 w-16 mx-auto bg-muted rounded mb-2" />
+              <div className="h-4 w-28 mx-auto bg-muted rounded" />
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    );
   }
 
   if (error) {
@@ -47,18 +58,21 @@ const StatsCard = () => {
       value: stats.totalCourses.toLocaleString(),
       icon: GraduationCap,
       color: "from-blue-500 to-cyan-500",
+      shadow: "shadow-blue-500/10",
     },
     {
       label: "Total Notes Available",
       value: stats.totalNotes.toLocaleString(),
       icon: BookOpen,
       color: "from-purple-500 to-pink-500",
+      shadow: "shadow-purple-500/10",
     },
     {
       label: "Total Downloads",
       value: stats.totalDownloads.toLocaleString(),
       icon: Download,
       color: "from-green-500 to-teal-500",
+      shadow: "shadow-green-500/10",
     },
   ];
 
@@ -69,18 +83,18 @@ const StatsCard = () => {
         return (
           <Card
             key={index}
-            className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-300"
+            className={`group bg-card/60 backdrop-blur-md border border-border/50 rounded-2xl shadow-lg hover:shadow-xl ${stat.shadow} transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1`}
           >
             <CardContent className="p-6 text-center">
               <div
-                className={`w-12 h-12 mx-auto mb-4 rounded-xl bg-gradient-to-r ${stat.color} flex items-center justify-center`}
+                className={`w-12 h-12 mx-auto mb-4 rounded-2xl bg-gradient-to-r ${stat.color} flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300`}
               >
                 <IconComponent className="h-6 w-6 text-white" />
               </div>
-              <div className="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-1">
+              <div className="text-4.5xl font-extrabold text-foreground mb-1 tracking-tight">
                 {stat.value}
               </div>
-              <div className="text-gray-600 dark:text-gray-400 font-medium">{stat.label}</div>
+              <div className="text-muted-foreground text-sm font-semibold tracking-wide uppercase">{stat.label}</div>
             </CardContent>
           </Card>
         );

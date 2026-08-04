@@ -1,5 +1,6 @@
 import { v2 as cloudinary } from "cloudinary";
 import streamifier from "streamifier";
+import path from "path";
 
 // Cloudinary config
 const connectCloudinary = async () => {
@@ -13,13 +14,18 @@ const connectCloudinary = async () => {
 // Stream upload function for unsigned preset
 export const streamUpload = (buffer, originalFilename) => {
   return new Promise((resolve, reject) => {
+    // Sanitize and preserve filename and extension to support document preview
+    const filename = originalFilename ? path.basename(originalFilename) : "file.pdf";
+    const ext = path.extname(filename);
+    const nameWithoutExt = path.basename(filename, ext).replace(/[^a-zA-Z0-9_\-]/g, "");
+    const publicId = `${nameWithoutExt}_${Date.now()}${ext}`;
+
     const stream = cloudinary.uploader.upload_stream(
       {
         folder: "studyroot", // ✅ Target folder
         upload_preset: "studyroot_public", // ✅ Unsigned preset
         resource_type: "raw", // ✅ For PDF, DOCX, etc.
-        use_filename: false, // ✅ Use original file name
-        unique_filename: true, // ✅ Add random suffix to avoid collisions
+        public_id: publicId, // ✅ Use custom public_id with extension to force keeping it
       },
       (error, result) => {
         if (result) resolve(result);

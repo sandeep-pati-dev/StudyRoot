@@ -15,25 +15,29 @@ export const getAllSubjects = async (req, res) => {
 // Create a new subject
 export const createSubject = async (req, res) => {
   try {
-    const { name, subjectCode, course, semesterNumber } = req.body;
+    const { name, subjectCode, course, semester, semesterNumber } = req.body;
 
-    if (!name || !subjectCode || !course || !semesterNumber) {
+    if (!name || !subjectCode || !course || (!semester && !semesterNumber)) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
-    // ✅ Fix: Use correct field name: number (not semesterNumber)
-    const semester = await Semester.findOne({
-      course,
-      number: semesterNumber,
-    });
+    let foundSemester;
+    if (semester) {
+      foundSemester = await Semester.findById(semester);
+    } else {
+      foundSemester = await Semester.findOne({
+        course,
+        number: semesterNumber,
+      });
+    }
 
-    if (!semester) {
+    if (!foundSemester) {
       return res.status(404).json({ message: "Semester not found" });
     }
 
     const existing = await Subject.findOne({
       name,
-      semester: semester._id,
+      semester: foundSemester._id,
     });
 
     if (existing) {
@@ -43,7 +47,7 @@ export const createSubject = async (req, res) => {
     const subject = await Subject.create({
       name,
       subjectCode,
-      semester: semester._id,
+      semester: foundSemester._id,
     });
 
     res.status(201).json(subject);

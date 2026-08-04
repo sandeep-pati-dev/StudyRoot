@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Target, Heart, Lightbulb } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const AboutSection = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const sectionRef = useRef(null);
   const [visible, setVisible] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -77,6 +79,7 @@ const AboutSection = () => {
 
             <Button
               size="lg"
+              onClick={() => navigate("/login")}
               className="bg-gradient-to-r from-uninote-blue to-uninote-purple hover:from-uninote-purple hover:to-uninote-blue text-white px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
             >
               Join UniNote Today

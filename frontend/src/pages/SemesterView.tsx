@@ -3,7 +3,9 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { GraduationCap, ChevronRight, Home, BookOpen } from "lucide-react";
+import { GraduationCap, ChevronRight, Home, BookOpen, Search } from "lucide-react";
+import { motion } from "framer-motion";
+import { Input } from "@/components/ui/input";
 import UserDropdown from "@/components/UserDropdown";
 import Navbar from "@/components/Navbar";
 import { useAuthStore } from "@/store/useAuthStore";
@@ -23,6 +25,12 @@ const SemesterView = () => {
   const [loading, setLoading] = useState(true);
   const [courseName, setCourseName] = useState<string>('');
   const [semesterName, setSemesterName] = useState<string>('');
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredSubjects = subjects.filter((subject: any) =>
+    subject.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    subject.subjectCode.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   useEffect(() => {
     const fetchCourseName = async () => {
@@ -102,39 +110,71 @@ const SemesterView = () => {
           </p>
         </div>
 
-        {/* Subject Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {subjects.map((subject) => (
-            <Card
-              key={subject._id}
-              className="group bg-card/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:translate-y-[-4px] cursor-pointer"
-              onClick={() => navigate(`/dashboard/${course}/${semester}/${subject._id}`)}
-            >
-              <CardHeader className="text-center pb-4">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-r from-uninote-blue to-uninote-purple flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <BookOpen className="h-8 w-8 text-white" />
-                </div>
-                <CardTitle className="text-xl font-bold text-foreground group-hover:text-uninote-blue transition-colors">
-                  {subject.name}
-                </CardTitle>
-                <div className="text-sm font-medium text-uninote-purple bg-uninote-purple/10 px-2 py-1 rounded-full inline-block mb-2">
-                  Subject Code : {subject.subjectCode}
-                </div>
-
-                <div className="text-sm text-muted-foreground mt-2">
-                  {subject.notes} notes available
-                </div>
-              </CardHeader>
-              <CardContent className="text-center">
-                <Button
-                  className="w-full bg-gradient-to-r from-uninote-blue to-uninote-purple hover:from-uninote-purple hover:to-uninote-blue text-white font-medium rounded-xl transition-all duration-300"
-                >
-                  View Notes
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
+        {/* Search Input */}
+        <div className="flex justify-center mb-10 animate-fade-in">
+          <div className="w-full max-w-md relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+            <Input
+              type="text"
+              placeholder="Search subjects by name or code..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10 pr-4 py-2 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-uninote-purple bg-card/50 border-border/50"
+            />
+          </div>
         </div>
+
+        {/* Subject Cards */}
+        <motion.div
+          variants={{
+            hidden: { opacity: 0 },
+            show: {
+              opacity: 1,
+              transition: { staggerChildren: 0.05 }
+            }
+          }}
+          initial="hidden"
+          animate="show"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          {filteredSubjects.map((subject) => (
+            <motion.div
+              key={subject._id}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 120, damping: 14 } }
+              }}
+            >
+              <Card
+                className="group bg-card/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:translate-y-[-4px] cursor-pointer"
+                onClick={() => navigate(`/dashboard/${course}/${semester}/${subject._id}`)}
+              >
+                <CardHeader className="text-center pb-4">
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-r from-uninote-blue to-uninote-purple flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <BookOpen className="h-8 w-8 text-white" />
+                  </div>
+                  <CardTitle className="text-xl font-bold text-foreground group-hover:text-uninote-blue transition-colors">
+                    {subject.name}
+                  </CardTitle>
+                  <div className="text-sm font-medium text-uninote-purple bg-uninote-purple/10 px-2 py-1 rounded-full inline-block mb-2">
+                    Subject Code : {subject.subjectCode}
+                  </div>
+
+                  <div className="text-sm text-muted-foreground mt-2">
+                    {subject.notes} notes available
+                  </div>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <Button
+                    className="w-full bg-gradient-to-r from-uninote-blue to-uninote-purple hover:from-uninote-purple hover:to-uninote-blue text-white font-medium rounded-xl transition-all duration-300"
+                  >
+                    View Notes
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </div>
   );

@@ -14,6 +14,7 @@ import AdminPanel from "./pages/AdminPanel";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import GenerateMCQ from "./pages/GenerateMCQ";
+import AISummarize from "./pages/AISummarize";
 
 import ProtectedRoute from "./components/ProtectedRoute";
 import { Toaster } from "@/components/ui/toaster";
@@ -169,6 +170,14 @@ const App = () => {
     element={
       <ProtectedRoute allowedRoles={["admin", "user"]}>
         <GenerateMCQ />
+      </ProtectedRoute>
+    }
+  />
+  <Route
+    path="/ai-summarize"
+    element={
+      <ProtectedRoute allowedRoles={["admin", "user"]}>
+        <AISummarize />
       </ProtectedRoute>
     }
   />

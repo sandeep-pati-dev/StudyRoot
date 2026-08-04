@@ -52,8 +52,9 @@ const SubjectView = () => {
 
   // Helper functions for preview and download
   const isPreviewSupported = (format: string) => {
+    if (!format) return false;
     const lowerFormat = format.toLowerCase();
-    return lowerFormat === "pdf";
+    return ["pdf", "docx", "doc", "pptx", "ppt"].includes(lowerFormat);
   };
 
   const handleDownload = async (noteId: string, title: string, format: string) => {
@@ -287,7 +288,7 @@ const SubjectView = () => {
 
     if (fileFormat === "pdf") {
       viewerUrl = `https://docs.google.com/gview?url=${encodeURIComponent(note.fileUrl)}&embedded=true`;
-    } else if (["docx", "pptx", "xlsx"].includes(fileFormat)) {
+    } else if (["docx", "doc", "pptx", "ppt", "xlsx"].includes(fileFormat)) {
       viewerUrl = `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(note.fileUrl)}`;
     } else {
       toast.error("Preview not supported for this file type.");

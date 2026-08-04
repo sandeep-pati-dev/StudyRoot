@@ -80,12 +80,11 @@ export const updateNote = async (req, res) => {
       let fileFormat = ext;
       if (["doc", "docx"].includes(ext)) fileFormat = "docx";
       else if (["ppt", "pptx"].includes(ext)) fileFormat = "pptx";
-      else if (["xls", "xlsx"].includes(ext)) fileFormat = "xlsx";
 
       // ✅ Only allow known valid formats
-      const validFormats = ["pdf", "docx", "txt", "pptx", "xlsx"];
+      const validFormats = ["pdf", "docx", "pptx"];
       if (!validFormats.includes(fileFormat)) {
-        return res.status(400).json({ message: "Unsupported file format" });
+        return res.status(400).json({ message: "Unsupported file format. Only PDF, PPT/PPTX and DOC/DOCX files are allowed." });
       }
 
       // Optionally: delete old file from Cloudinary here
@@ -217,12 +216,11 @@ export const uploadNote = async (req, res) => {
     let fileFormat = ext;
     if (["doc", "docx"].includes(ext)) fileFormat = "docx";
     else if (["ppt", "pptx"].includes(ext)) fileFormat = "pptx";
-    else if (["xls", "xlsx"].includes(ext)) fileFormat = "xlsx";
 
-    if (!["pdf", "docx", "txt", "pptx", "xlsx"].includes(fileFormat)) {
+    if (!["pdf", "docx", "pptx"].includes(fileFormat)) {
       return res
         .status(400)
-        .json({ success: false, message: "Unsupported file format" });
+        .json({ success: false, message: "Unsupported file format. Only PDF, PPT/PPTX and DOC/DOCX files are allowed." });
     }
 
     // Step 7: Save the note
@@ -329,11 +327,12 @@ export const downloadNote = async (req, res) => {
 
     console.log("✅ File downloaded from Cloudinary. Streaming to user...");
 
+    const safeFilename = encodeURIComponent(note.title);
     res.setHeader(
       "Content-Disposition",
-      `attachment; filename="${note.title}.${note.fileFormat}"`
+      `attachment; filename*=UTF-8''${safeFilename}.${note.fileFormat}`
     );
-    res.setHeader("Content-Type", fileResponse.headers["content-type"]);
+    res.setHeader("Content-Type", fileResponse.headers["content-type"] || "application/octet-stream");
 
     fileResponse.data.pipe(res);
   } catch (error) {

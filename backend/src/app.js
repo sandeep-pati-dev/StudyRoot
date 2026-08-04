@@ -30,6 +30,7 @@ import noteRatingRoute from "./routes/ratingRoutes.js";
 import profileRoute from "./routes/profileRoutes.js";
 import mcqRoutes from "./routes/mcqRoutes.js"
 import dashboardRoute from "./routes/dashboardRoutes.js";
+import summarizeRoutes from "./routes/summarizeRoutes.js";
 
 import commentRoute from "./routes/commentRoutes.js";
 import ratingRoute from "./routes/ratingRoutes.js";
@@ -48,5 +49,6 @@ app.use("/api/note-ratings", noteRatingRoute);
 app.use("/api/profile", profileRoute);
 app.use('/api/mcq', mcqRoutes);
 app.use("/api/dashboard", dashboardRoute);
+app.use("/api/summarize", summarizeRoutes);
 
 export { app };
