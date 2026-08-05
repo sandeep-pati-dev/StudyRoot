@@ -82,44 +82,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="mt-0">
-            <h3 className="text-lg font-semibold mb-4">Developed By</h3>
-            <ul className="space-y-3 text-muted-foreground text-sm">
-              <li>
-                <a
-                  href="https://www.linkedin.com/in/padma-lochan-sahoo?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-foreground transition-colors flex items-center space-x-2"
-                >
-                  <GraduationCap className="h-4 w-4 text-studyroot-blue" />
-                  <span>Padma Lochan Sahoo - GIET University, Gunupur</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.linkedin.com/in/saikatbahadur?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-foreground transition-colors flex items-center space-x-2"
-                >
-                  <GraduationCap className="h-4 w-4 text-studyroot-blue" />
-                  <span>Saikat Bahadur - GIET University, Gunupur</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.linkedin.com/in/sandeep-pati-537ba030b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-foreground transition-colors flex items-center space-x-2"
-                >
-                  <GraduationCap className="h-4 w-4 text-studyroot-blue" />
-                  <span>Sandeep Pati - GIET University, Gunupur</span>
-                </a>
-              </li>
-            </ul>
-          </div>
+
         </div>
 
         {/* Developer Info Section */}
