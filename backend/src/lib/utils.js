@@ -53,11 +53,13 @@ export const generateToken = async (userId, res) => {
         expiresIn: "7d"
     });
 
+    const isProduction = process.env.NODE_ENV === "production";
+
     res.cookie("jwt", token, {
         maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
         httpOnly: true,                  // prevents JavaScript access to cookie
-        sameSite: "lax",                 // okay for development (CSRF protection)
-        secure: false                    // allow HTTP for local dev
+        sameSite: isProduction ? "none" : "lax", // must be "none" for cross-domain cookies in production
+        secure: isProduction,            // must be true (HTTPS) when sameSite is "none"
     });
 
     return token;
