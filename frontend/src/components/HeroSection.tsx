@@ -71,13 +71,7 @@ const HeroSection = () => {
                   Get Started <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
-              <Button
-                variant="outline"
-                size="lg"
-                className="border-2 border-studyroot-blue text-studyroot-blue hover:bg-studyroot-blue hover:text-white px-8 py-4 text-lg font-semibold rounded-full transition-all duration-300 hover:scale-105"
-              >
-                <Play className="mr-2 h-5 w-5" /> Learn More
-              </Button>
+
             </div>
             <div className="grid grid-cols-3 gap-8 max-w-md mx-auto lg:mx-0">
               {[
