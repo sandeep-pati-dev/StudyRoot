@@ -191,14 +191,14 @@ const Login = () => {
   return (
     <div className="min-h-screen flex">
       {/* Left - Motivation */}
-      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-uninote-blue via-uninote-purple to-uninote-blue relative overflow-hidden">
+      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-studyroot-blue via-studyroot-purple to-studyroot-blue relative overflow-hidden">
         <div className="absolute inset-0 bg-black/10" />
         <div className="relative z-10 flex flex-col justify-center items-center text-white p-12">
           <div className="flex items-center space-x-3 mb-8">
             <div className="bg-white/20 backdrop-blur-sm p-3 rounded-2xl">
               <GraduationCap className="h-8 w-8" />
             </div>
-            <span className="text-3xl font-bold">UniNote</span>
+            <span className="text-3xl font-bold">StudyRoot</span>
           </div>
           <h1 className="text-4xl font-bold text-center mb-6">
             Study Smarter, <br /> Not Harder
@@ -224,11 +224,11 @@ const Login = () => {
             )}
 
             <div className="lg:hidden flex items-center justify-center space-x-2 mb-4">
-              <div className="bg-gradient-to-r from-uninote-blue to-uninote-purple p-2 rounded-xl">
+              <div className="bg-gradient-to-r from-studyroot-blue to-studyroot-purple p-2 rounded-xl">
                 <GraduationCap className="h-6 w-6 text-white" />
               </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-uninote-blue to-uninote-purple bg-clip-text text-transparent">
-                UniNote
+              <span className="text-2xl font-bold bg-gradient-to-r from-studyroot-blue to-studyroot-purple bg-clip-text text-transparent">
+                StudyRoot
               </span>
             </div>
             <CardTitle className="text-2xl font-bold text-foreground">
@@ -236,7 +236,7 @@ const Login = () => {
               {currentStep === "reset-password" && "Reset Password"}
               {currentStep === "signup-otp" && "Verify OTP"}
               {currentStep === "login" && "Welcome Back"}
-              {currentStep === "signup" && "Join UniNote"}
+              {currentStep === "signup" && "Join StudyRoot"}
             </CardTitle>
             <CardDescription className="text-muted-foreground">
               {currentStep === "forgot-password-otp" && "Enter the OTP sent to your email"}
@@ -377,9 +377,9 @@ const Login = () => {
                   isVerifyingPasswordResetOtp ||
                   isResettingPassword
                 }
-                className={`w-full h-12 bg-gradient-to-r from-uninote-blue to-uninote-purple text-white font-medium rounded-xl transition-all duration-300 ${isSigningUp || isLoggingIn || isVerifyingOtp || isForgotPassword || isVerifyingPasswordResetOtp || isResettingPassword
+                className={`w-full h-12 bg-gradient-to-r from-studyroot-blue to-studyroot-purple text-white font-medium rounded-xl transition-all duration-300 ${isSigningUp || isLoggingIn || isVerifyingOtp || isForgotPassword || isVerifyingPasswordResetOtp || isResettingPassword
                   ? "opacity-70 cursor-not-allowed"
-                  : "hover:from-uninote-purple hover:to-uninote-blue hover:scale-[1.02]"
+                  : "hover:from-studyroot-purple hover:to-studyroot-blue hover:scale-[1.02]"
                   }`}
               >
                 {currentStep === "forgot-password-otp" && (isVerifyingPasswordResetOtp ? "Verifying OTP..." : "Verify OTP")}
@@ -396,7 +396,7 @@ const Login = () => {
                 <button
                   onClick={handleForgotPassword}
                   disabled={isForgotPassword}
-                  className="text-uninote-blue hover:underline font-medium disabled:opacity-50"
+                  className="text-studyroot-blue hover:underline font-medium disabled:opacity-50"
                 >
                   {isForgotPassword ? "Sending..." : "Forgot Password?"}
                 </button>
@@ -410,7 +410,7 @@ const Login = () => {
                   {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
                   <button
                     onClick={() => setIsLogin(!isLogin)}
-                    className="text-uninote-blue hover:underline font-medium"
+                    className="text-studyroot-blue hover:underline font-medium"
                   >
                     {isLogin ? "Sign Up" : "Sign In"}
                   </button>

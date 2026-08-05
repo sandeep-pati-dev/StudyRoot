@@ -23,8 +23,8 @@ const Footer = () => {
         className="absolute inset-0 opacity-20 transition-transform duration-200 pointer-events-none"
         style={{ transform: `translate(${mousePos.x}px, ${mousePos.y}px)` }}
       >
-        <div className="absolute top-0 left-0 w-72 h-72 bg-gradient-to-br from-uninote-blue to-uninote-purple rounded-full filter blur-3xl animate-float"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-br from-uninote-purple to-pink-300 rounded-full filter blur-3xl animate-float delay-1000"></div>
+        <div className="absolute top-0 left-0 w-72 h-72 bg-gradient-to-br from-studyroot-blue to-studyroot-purple rounded-full filter blur-3xl animate-float"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-br from-studyroot-purple to-pink-300 rounded-full filter blur-3xl animate-float delay-1000"></div>
         <div className="absolute top-1/2 left-1/2 w-40 h-40 bg-white/10 rounded-full filter blur-2xl transform -translate-x-1/2 -translate-y-1/2"></div>
 
         {/* Hover Effects on Specific Values */}
@@ -38,10 +38,10 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="bg-gradient-to-r from-uninote-blue to-uninote-purple p-2 rounded-xl">
+              <div className="bg-gradient-to-r from-studyroot-blue to-studyroot-purple p-2 rounded-xl">
                 <GraduationCap className="h-6 w-6 text-white" />
               </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-uninote-blue to-uninote-purple bg-clip-text text-transparent">
+              <span className="text-2xl font-bold bg-gradient-to-r from-studyroot-blue to-studyroot-purple bg-clip-text text-transparent">
                 StudyRoot
               </span>
             </div>
@@ -69,15 +69,15 @@ const Footer = () => {
             <h3 className="text-lg font-semibold">Contact Us</h3>
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
-                <Mail className="h-5 w-5 text-uninote-blue" />
+                <Mail className="h-5 w-5 text-studyroot-blue" />
                 <span className="text-muted-foreground">studyroot18@gmail.com</span>
               </div>
               <div className="flex items-center space-x-3">
-                <Phone className="h-5 w-5 text-uninote-blue" />
+                <Phone className="h-5 w-5 text-studyroot-blue" />
                 <span className="text-muted-foreground">+91 7606957399</span>
               </div>
               <div className="flex items-center space-x-3">
-                <MapPin className="h-5 w-5 text-uninote-blue" />
+                <MapPin className="h-5 w-5 text-studyroot-blue" />
                 <span className="text-muted-foreground">GIET University ,GUNUPUR</span>
               </div>
             </div>
@@ -92,7 +92,7 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   className="hover:text-foreground transition-colors flex items-center space-x-2"
                 >
-                  <GraduationCap className="h-4 w-4 text-uninote-blue" />
+                  <GraduationCap className="h-4 w-4 text-studyroot-blue" />
                   <span>Padma Lochan Sahoo - GIET University, Gunupur</span>
                 </a>
               </li>
@@ -103,7 +103,7 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   className="hover:text-foreground transition-colors flex items-center space-x-2"
                 >
-                  <GraduationCap className="h-4 w-4 text-uninote-blue" />
+                  <GraduationCap className="h-4 w-4 text-studyroot-blue" />
                   <span>Saikat Bahadur - GIET University, Gunupur</span>
                 </a>
               </li>
@@ -114,7 +114,7 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   className="hover:text-foreground transition-colors flex items-center space-x-2"
                 >
-                  <GraduationCap className="h-4 w-4 text-uninote-blue" />
+                  <GraduationCap className="h-4 w-4 text-studyroot-blue" />
                   <span>Sandeep Pati - GIET University, Gunupur</span>
                 </a>
               </li>

@@ -165,7 +165,7 @@ const SidebarNav = ({ activeTab, setActiveTab }: SidebarNavProps) => {
                 </div>
                 {!isCollapsed && (
                   <span className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
-                    UniNote
+                    StudyRoot
                   </span>
                 )}
               </div>

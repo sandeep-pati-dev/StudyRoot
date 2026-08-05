@@ -79,15 +79,15 @@ const SemesterView = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <nav className="flex items-center space-x-2 text-sm text-muted-foreground">
           
-          <Link to="/dashboard" className="flex items-center hover:text-uninote-blue transition-colors">
+          <Link to="/dashboard" className="flex items-center hover:text-studyroot-blue transition-colors">
             Dashboard
           </Link>
           <ChevronRight className="h-4 w-4" />
-          <Link to="/courses" className="flex items-center hover:text-uninote-blue transition-colors">
+          <Link to="/courses" className="flex items-center hover:text-studyroot-blue transition-colors">
             Study Materials
           </Link>
           <ChevronRight className="h-4 w-4" />
-          <Link to={`/dashboard/${course}`} className="hover:text-uninote-blue transition-colors">
+          <Link to={`/dashboard/${course}`} className="hover:text-studyroot-blue transition-colors">
             {(courseName)}
           </Link>
           <ChevronRight className="h-4 w-4" />
@@ -101,7 +101,7 @@ const SemesterView = () => {
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
             Semester {semesterName}{" "}
-            <span className="bg-gradient-to-r from-uninote-blue to-uninote-purple bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-studyroot-blue to-studyroot-purple bg-clip-text text-transparent">
               Subjects
             </span>
           </h1>
@@ -119,7 +119,7 @@ const SemesterView = () => {
               placeholder="Search subjects by name or code..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10 pr-4 py-2 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-uninote-purple bg-card/50 border-border/50"
+              className="pl-10 pr-4 py-2 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-studyroot-purple bg-card/50 border-border/50"
             />
           </div>
         </div>
@@ -150,13 +150,13 @@ const SemesterView = () => {
                 onClick={() => navigate(`/dashboard/${course}/${semester}/${subject._id}`)}
               >
                 <CardHeader className="text-center pb-4">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-r from-uninote-blue to-uninote-purple flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-r from-studyroot-blue to-studyroot-purple flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                     <BookOpen className="h-8 w-8 text-white" />
                   </div>
-                  <CardTitle className="text-xl font-bold text-foreground group-hover:text-uninote-blue transition-colors">
+                  <CardTitle className="text-xl font-bold text-foreground group-hover:text-studyroot-blue transition-colors">
                     {subject.name}
                   </CardTitle>
-                  <div className="text-sm font-medium text-uninote-purple bg-uninote-purple/10 px-2 py-1 rounded-full inline-block mb-2">
+                  <div className="text-sm font-medium text-studyroot-purple bg-studyroot-purple/10 px-2 py-1 rounded-full inline-block mb-2">
                     Subject Code : {subject.subjectCode}
                   </div>
 
@@ -166,7 +166,7 @@ const SemesterView = () => {
                 </CardHeader>
                 <CardContent className="text-center">
                   <Button
-                    className="w-full bg-gradient-to-r from-uninote-blue to-uninote-purple hover:from-uninote-purple hover:to-uninote-blue text-white font-medium rounded-xl transition-all duration-300"
+                    className="w-full bg-gradient-to-r from-studyroot-blue to-studyroot-purple hover:from-studyroot-purple hover:to-studyroot-blue text-white font-medium rounded-xl transition-all duration-300"
                   >
                     View Notes
                   </Button>

@@ -63,11 +63,11 @@ const CourseView = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <nav className="flex items-center space-x-2 text-sm text-muted-foreground">
          
-          <Link to="/dashboard" className="flex items-center hover:text-uninote-blue transition-colors">
+          <Link to="/dashboard" className="flex items-center hover:text-studyroot-blue transition-colors">
             Dashboard
           </Link>
           <ChevronRight className="h-4 w-4" />
-          <Link to="/courses" className="flex items-center hover:text-uninote-blue transition-colors">
+          <Link to="/courses" className="flex items-center hover:text-studyroot-blue transition-colors">
             Study Materials
           </Link>
           <ChevronRight className="h-4 w-4" />
@@ -79,7 +79,7 @@ const CourseView = () => {
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
             {getCourseName(courseName || '')}{" "}
-            <span className="bg-gradient-to-r from-uninote-blue to-uninote-purple bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-studyroot-blue to-studyroot-purple bg-clip-text text-transparent">
               Semesters
             </span>
           </h1>
@@ -100,10 +100,10 @@ const CourseView = () => {
               onClick={() => navigate(`/dashboard/${course}/semester/${semesterData._id}`)}
             >
               <CardHeader className="text-center pb-4">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-r from-uninote-blue to-uninote-purple flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-r from-studyroot-blue to-studyroot-purple flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                   <Calendar className="h-8 w-8 text-white" />
                 </div>
-                <CardTitle className="text-xl font-bold text-foreground group-hover:text-uninote-blue transition-colors">
+                <CardTitle className="text-xl font-bold text-foreground group-hover:text-studyroot-blue transition-colors">
                   Semester {semesterData.number}
                 </CardTitle>
                 <div className="text-sm text-muted-foreground mt-2">
@@ -114,7 +114,7 @@ const CourseView = () => {
                 <Button
                   onClick={() => navigate(`/dashboard/${course}/semester/${semesterData._id}`)}
 
-                  className="w-full bg-gradient-to-r from-uninote-blue to-uninote-purple hover:from-uninote-purple hover:to-uninote-blue text-white font-medium rounded-xl transition-all duration-300"
+                  className="w-full bg-gradient-to-r from-studyroot-blue to-studyroot-purple hover:from-studyroot-purple hover:to-studyroot-blue text-white font-medium rounded-xl transition-all duration-300"
                 >
                   View Subjects
                 </Button>

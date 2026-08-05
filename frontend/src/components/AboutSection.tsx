@@ -47,8 +47,8 @@ const AboutSection = () => {
         className="absolute inset-0 opacity-20 transition-transform duration-200"
         style={{ transform: `translate(${mousePos.x}px, ${mousePos.y}px)` }}
       >
-        <div className="absolute top-0 left-0 w-72 h-72 bg-gradient-to-br from-uninote-blue to-uninote-purple rounded-full filter blur-3xl animate-float"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-br from-uninote-purple to-pink-300 rounded-full filter blur-3xl animate-float delay-1000"></div>
+        <div className="absolute top-0 left-0 w-72 h-72 bg-gradient-to-br from-studyroot-blue to-studyroot-purple rounded-full filter blur-3xl animate-float"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-br from-studyroot-purple to-pink-300 rounded-full filter blur-3xl animate-float delay-1000"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -60,14 +60,14 @@ const AboutSection = () => {
             <div className="space-y-6">
               <h2 className="text-4xl sm:text-5xl font-bold text-foreground">
                 About
-                <span className="bg-gradient-to-r from-uninote-blue to-uninote-purple bg-clip-text text-transparent ml-2">
-                  UniNote
+                <span className="bg-gradient-to-r from-studyroot-blue to-studyroot-purple bg-clip-text text-transparent ml-2">
+                  StudyRoot
                 </span>
               </h2>
 
               <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
                 We understand the struggle of hunting for quality study materials across different platforms.
-                UniNote was created to solve this problem by providing a centralized hub where students can
+                StudyRoot was created to solve this problem by providing a centralized hub where students can
                 focus more on learning and less on searching.
               </p>
 
@@ -80,9 +80,9 @@ const AboutSection = () => {
             <Button
               size="lg"
               onClick={() => navigate("/login")}
-              className="bg-gradient-to-r from-uninote-blue to-uninote-purple hover:from-uninote-purple hover:to-uninote-blue text-white px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+              className="bg-gradient-to-r from-studyroot-blue to-studyroot-purple hover:from-studyroot-purple hover:to-studyroot-blue text-white px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
             >
-              Join UniNote Today
+              Join StudyRoot Today
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </div>
@@ -93,8 +93,8 @@ const AboutSection = () => {
           >
             <div className="bg-card/80 border border-white/30 rounded-2xl p-6 shadow-md backdrop-blur-md hover:shadow-xl hover:scale-[1.02] transition-transform duration-500">
               <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-uninote-blue/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Target className="h-6 w-6 text-uninote-blue" />
+                <div className="w-12 h-12 bg-studyroot-blue/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Target className="h-6 w-6 text-studyroot-blue" />
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-foreground mb-2">Our Mission</h3>
@@ -107,13 +107,13 @@ const AboutSection = () => {
 
             <div className="bg-card/80 border border-white/30 rounded-2xl p-6 shadow-md backdrop-blur-md hover:shadow-xl hover:scale-[1.02] transition-transform duration-500">
               <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-uninote-purple/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Heart className="h-6 w-6 text-uninote-purple" />
+                <div className="w-12 h-12 bg-studyroot-purple/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Heart className="h-6 w-6 text-studyroot-purple" />
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-foreground mb-2">Our Values</h3>
                   <p className="text-muted-foreground">
-                    Quality, accessibility, and student-first approach drive everything we do at UniNote.
+                    Quality, accessibility, and student-first approach drive everything we do at StudyRoot.
                   </p>
                 </div>
               </div>

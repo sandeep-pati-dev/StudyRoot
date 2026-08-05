@@ -287,7 +287,7 @@ const Profile = () => {
       <div className="min-h-screen bg-background">
         <Navbar />
         <div className="flex items-center justify-center h-[calc(100vh-4rem)]">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-uninote-blue"></div>
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-studyroot-blue"></div>
         </div>
       </div>
     );
@@ -322,7 +322,7 @@ const Profile = () => {
               <div className="relative flex-shrink-0">
                 <Avatar className={`h-24 w-24 text-3xl transition-opacity ${isUploadingPicture ? 'opacity-50' : 'opacity-100'}`}>
                   <AvatarImage src={profile.profilePic} alt={profile.fullName} />
-                  <AvatarFallback className="bg-gradient-to-r from-uninote-blue to-uninote-purple text-white">
+                  <AvatarFallback className="bg-gradient-to-r from-studyroot-blue to-studyroot-purple text-white">
                     {profile.fullName.charAt(0).toUpperCase()}
                   </AvatarFallback>
                 </Avatar>
@@ -362,7 +362,7 @@ const Profile = () => {
                 <div className="mt-4">
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-sm font-medium text-foreground">Profile Completion</span>
-                    <span className="text-sm font-medium text-uninote-blue">{profile.profileCompletion}%</span>
+                    <span className="text-sm font-medium text-studyroot-blue">{profile.profileCompletion}%</span>
                   </div>
                   <Progress value={profile.profileCompletion} className="h-2" />
                 </div>

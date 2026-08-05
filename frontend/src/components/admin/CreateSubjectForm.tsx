@@ -48,7 +48,7 @@ const CreateSubjectForm: React.FC<CreateSubjectFormProps> = ({
   return (
     <div className="w-full max-w-2xl">
       <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-1">
-        Create <span className="text-uninote-purple">Subject</span>
+        Create <span className="text-studyroot-purple">Subject</span>
       </h1>
       <p className="text-gray-500 dark:text-gray-400 mb-6">
         Add subjects under selected course and semester.

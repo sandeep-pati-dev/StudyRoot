@@ -51,7 +51,7 @@ const CreateCourseSection = () => {
   return (
     <div className="w-full max-w-2xl">
       <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-1">
-        Create <span className="text-uninote-purple">Course</span>
+        Create <span className="text-studyroot-purple">Course</span>
       </h1>
       <p className="text-gray-500 dark:text-gray-400 mb-6">
         Add a new course and define its total number of semesters.

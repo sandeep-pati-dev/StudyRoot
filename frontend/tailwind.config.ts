@@ -63,10 +63,10 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				'uninote-blue': '#3B82F6',
-				'uninote-purple': '#8B5CF6',
-				'uninote-light': '#F8FAFC',
-				'uninote-dark': '#1E293B'
+				'studyroot-blue': '#3B82F6',
+				'studyroot-purple': '#8B5CF6',
+				'studyroot-light': '#F8FAFC',
+				'studyroot-dark': '#1E293B'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

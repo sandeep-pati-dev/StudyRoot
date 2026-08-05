@@ -24,7 +24,7 @@ const NoteCard = ({ note, onEdit, onDelete }) => {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
           {/* Main content area */}
           <div className="flex items-start space-x-3 sm:space-x-4 flex-1 min-w-0">
-            <div className="bg-gradient-to-r from-uninote-blue to-uninote-purple p-2 sm:p-3 rounded-lg sm:rounded-xl shrink-0 group-hover:scale-105 transition-transform duration-200">
+            <div className="bg-gradient-to-r from-studyroot-blue to-studyroot-purple p-2 sm:p-3 rounded-lg sm:rounded-xl shrink-0 group-hover:scale-105 transition-transform duration-200">
               {getFileTypeIcon(note.fileFormat)}
             </div>
             <div className="flex-1 min-w-0">

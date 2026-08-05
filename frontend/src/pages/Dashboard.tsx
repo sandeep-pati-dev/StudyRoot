@@ -88,13 +88,13 @@ const Dashboard = () => {
                 onClick={disabled ? undefined : onClick}
               >
                 <CardHeader className="text-center pb-4 relative">
-                  <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-r from-uninote-blue to-uninote-purple flex items-center justify-center ${
+                  <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-r from-studyroot-blue to-studyroot-purple flex items-center justify-center ${
                     disabled ? "" : "group-hover:scale-110 transition-transform duration-300"
                   }`}>
                     <Icon className="h-8 w-8 text-foreground" />
                   </div>
                   <CardTitle className={`text-2xl font-bold text-foreground ${
-                    disabled ? "" : "group-hover:text-uninote-blue transition-colors"
+                    disabled ? "" : "group-hover:text-studyroot-blue transition-colors"
                   }`}>
                     {title}
                   </CardTitle>
@@ -109,10 +109,10 @@ const Dashboard = () => {
                 </CardHeader>
                 <CardContent className="text-center">
                   <button
-                    className={`w-full bg-gradient-to-r from-uninote-blue to-uninote-purple text-white font-medium rounded-xl transition-all duration-300 py-2 ${
+                    className={`w-full bg-gradient-to-r from-studyroot-blue to-studyroot-purple text-white font-medium rounded-xl transition-all duration-300 py-2 ${
                       disabled
                         ? "opacity-50 cursor-not-allowed"
-                        : "hover:from-uninote-purple hover:to-uninote-blue"
+                        : "hover:from-studyroot-purple hover:to-studyroot-blue"
                     }`}
                     disabled={disabled}
                   >

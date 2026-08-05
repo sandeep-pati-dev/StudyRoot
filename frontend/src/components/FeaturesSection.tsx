@@ -8,14 +8,14 @@ const features = [
     title: "Browse Notes by Course & Semester",
     description:
       "Easily navigate through organized course materials sorted by semester and subject for quick access to what you need.",
-    gradient: "from-uninote-blue to-blue-400"
+    gradient: "from-studyroot-blue to-blue-400"
   },
   {
     icon: Download,
     title: "Download Verified Study Materials",
     description:
       "Access high-quality, peer-reviewed notes and study materials that have been verified by our academic team.",
-    gradient: "from-uninote-purple to-pink-400"
+    gradient: "from-studyroot-purple to-pink-400"
   },
   {
     icon: Shield,
@@ -76,8 +76,8 @@ const FeaturesSection = () => {
         className="absolute inset-0 opacity-20 transition-transform duration-200"
         style={{ transform: `translate(${mousePos.x}px, ${mousePos.y}px)` }}
       >
-        <div className="absolute top-0 left-0 w-72 h-72 bg-gradient-to-br from-uninote-blue to-uninote-purple rounded-full filter blur-3xl animate-float"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-br from-uninote-purple to-pink-300 rounded-full filter blur-3xl animate-float delay-1000"></div>
+        <div className="absolute top-0 left-0 w-72 h-72 bg-gradient-to-br from-studyroot-blue to-studyroot-purple rounded-full filter blur-3xl animate-float"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-br from-studyroot-purple to-pink-300 rounded-full filter blur-3xl animate-float delay-1000"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -87,7 +87,7 @@ const FeaturesSection = () => {
         >
           <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">
             Platform
-            <span className="bg-gradient-to-r from-uninote-blue to-uninote-purple bg-clip-text text-transparent ml-2">
+            <span className="bg-gradient-to-r from-studyroot-blue to-studyroot-purple bg-clip-text text-transparent ml-2">
               Features
             </span>
           </h2>
@@ -111,7 +111,7 @@ const FeaturesSection = () => {
                 >
                   <feature.icon className="h-8 w-8 text-white" />
                 </div>
-                <CardTitle className="text-xl font-bold text-foreground group-hover:text-uninote-blue transition-colors">
+                <CardTitle className="text-xl font-bold text-foreground group-hover:text-studyroot-blue transition-colors">
                   {feature.title}
                 </CardTitle>
               </CardHeader>

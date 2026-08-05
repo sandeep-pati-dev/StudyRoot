@@ -49,7 +49,7 @@ const UploadForm: React.FC<UploadFormProps> = ({
   return (
     <div className="w-full max-w-2xl">
       <h1 className="text-3xl font-bold text-foreground mb-1">
-        Upload <span className="text-uninote-purple">Notes</span>
+        Upload <span className="text-studyroot-purple">Notes</span>
       </h1>
       <p className="text-muted-foreground mb-6">
         Upload verified study materials for students to access.

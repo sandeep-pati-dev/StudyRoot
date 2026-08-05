@@ -403,7 +403,7 @@ const SubjectView = () => {
         {/* Header - Mobile Responsive */}
         <div className="text-center mb-6 sm:mb-8 px-2 sm:px-0">
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3 sm:mb-4 break-words dark:text-foreground">
-            {subjectName} <span className="bg-gradient-to-r from-uninote-blue to-uninote-purple bg-clip-text text-transparent">Notes</span>
+            {subjectName} <span className="bg-gradient-to-r from-studyroot-blue to-studyroot-purple bg-clip-text text-transparent">Notes</span>
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto px-2 sm:px-0 dark:text-muted-foreground">
             Download verified study materials and notes for {subjectName}.
@@ -449,7 +449,7 @@ const SubjectView = () => {
                     {/* Mobile Layout */}
                     <div className="block sm:hidden">
                       <div className="flex items-start space-x-3 mb-3">
-                        <div className="bg-gradient-to-r from-uninote-blue to-uninote-purple p-2 rounded-lg">
+                        <div className="bg-gradient-to-r from-studyroot-blue to-studyroot-purple p-2 rounded-lg">
                           <FileText className="h-4 w-4 text-white" />
                         </div>
                         <div className="flex-1 min-w-0">
@@ -482,8 +482,8 @@ const SubjectView = () => {
                               variant="outline"
                               size="sm"
                               disabled={!isPreviewSupported(note.fileFormat)}
-                              className={`w-full flex items-center justify-center space-x-1 border-uninote-blue text-uninote-blue text-xs
-                              ${isPreviewSupported(note.fileFormat) ? 'hover:bg-uninote-blue hover:text-white' : 'cursor-not-allowed opacity-50'}`}
+                              className={`w-full flex items-center justify-center space-x-1 border-studyroot-blue text-studyroot-blue text-xs
+                              ${isPreviewSupported(note.fileFormat) ? 'hover:bg-studyroot-blue hover:text-white' : 'cursor-not-allowed opacity-50'}`}
                             >
                               <Eye className="h-3 w-3" />
                               <span>View</span>
@@ -494,7 +494,7 @@ const SubjectView = () => {
                             <Button
                               onClick={() => handleDownload(note._id, note.title, note.fileFormat)}
                               size="sm"
-                              className="w-full flex items-center justify-center space-x-1 bg-gradient-to-r from-uninote-blue to-uninote-purple hover:from-uninote-purple hover:to-uninote-blue text-xs"
+                              className="w-full flex items-center justify-center space-x-1 bg-gradient-to-r from-studyroot-blue to-studyroot-purple hover:from-studyroot-purple hover:to-studyroot-blue text-xs"
                             >
                               <Download className="h-3 w-3" />
                               <span>Download</span>
@@ -512,7 +512,7 @@ const SubjectView = () => {
                     {/* Desktop Layout */}
                     <div className="hidden sm:flex items-center justify-between">
                       <div className="flex items-center space-x-4">
-                        <div className="bg-gradient-to-r from-uninote-blue to-uninote-purple p-3 rounded-xl">
+                        <div className="bg-gradient-to-r from-studyroot-blue to-studyroot-purple p-3 rounded-xl">
                           <FileText className="h-6 w-6 text-white" />
                         </div>
 
@@ -550,8 +550,8 @@ const SubjectView = () => {
                               variant="outline"
                               size="sm"
                               disabled={!isPreviewSupported(note.fileFormat)}
-                              className={`flex items-center space-x-1 border-uninote-blue text-uninote-blue 
-                              ${isPreviewSupported(note.fileFormat) ? 'hover:bg-uninote-blue hover:text-white' : 'cursor-not-allowed opacity-50'}`}
+                              className={`flex items-center space-x-1 border-studyroot-blue text-studyroot-blue 
+                              ${isPreviewSupported(note.fileFormat) ? 'hover:bg-studyroot-blue hover:text-white' : 'cursor-not-allowed opacity-50'}`}
                             >
                               <Eye className="h-4 w-4" />
                               <span>View</span>
@@ -567,7 +567,7 @@ const SubjectView = () => {
                           <Button
                             onClick={() => handleDownload(note._id, note.title, note.fileFormat)}
                             size="sm"
-                            className="flex-1 sm:flex-initial flex items-center justify-center space-x-1 bg-gradient-to-r from-uninote-blue to-uninote-purple hover:from-uninote-purple hover:to-uninote-blue text-xs sm:text-sm h-8 sm:h-9"
+                            className="flex-1 sm:flex-initial flex items-center justify-center space-x-1 bg-gradient-to-r from-studyroot-blue to-studyroot-purple hover:from-studyroot-purple hover:to-studyroot-blue text-xs sm:text-sm h-8 sm:h-9"
                           >
                             <Download className="h-3 w-3 sm:h-4 sm:w-4" />
                             <span>Download</span>
@@ -613,7 +613,7 @@ const SubjectView = () => {
             aria-expanded={commentsVisible}
             aria-controls="comments-section"
           >
-            <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 text-uninote-blue" />
+            <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 text-studyroot-blue" />
             <span>Comments</span>
             <svg
               className={`w-4 h-4 sm:w-5 sm:h-5 ml-2 transition-transform duration-300 ${commentsVisible ? "transform rotate-180" : ""
@@ -642,13 +642,13 @@ const SubjectView = () => {
                         value={newComment}
                         onChange={(e) => setNewComment(e.target.value)}
                         rows={3}
-                        className="w-full rounded-lg border border-border p-3 resize-none focus:outline-none focus:ring-2 focus:ring-uninote-blue text-sm sm:text-base"
+                        className="w-full rounded-lg border border-border p-3 resize-none focus:outline-none focus:ring-2 focus:ring-studyroot-blue text-sm sm:text-base"
                       />
                       <div className="flex justify-end mt-2">
                         <Button
                           onClick={handlePostComment}
                           disabled={!newComment.trim() || postingComment}
-                          className={`bg-uninote-blue text-white hover:bg-uninote-purple text-sm sm:text-base ${postingComment ? "opacity-50 cursor-wait" : ""
+                          className={`bg-studyroot-blue text-white hover:bg-studyroot-purple text-sm sm:text-base ${postingComment ? "opacity-50 cursor-wait" : ""
                             }`}
                         >
                           {postingComment ? "Posting..." : "Post Comment"}
@@ -668,7 +668,7 @@ const SubjectView = () => {
                       {comments.map((comment) => (
                         <Card
                           key={comment._id}
-                          className="bg-card/80 backdrop-blur-sm border-l-4 border-uninote-blue shadow-md"
+                          className="bg-card/80 backdrop-blur-sm border-l-4 border-studyroot-blue shadow-md"
                         >
                           <CardContent className="p-3 sm:p-4">
                             <div className="flex items-start space-x-3 sm:space-x-4">
@@ -724,7 +724,7 @@ const SubjectView = () => {
                       <Button
                         key={pageNum}
                         onClick={() => setCommentsPage(pageNum)}
-                        className={`px-2 sm:px-3 py-1 rounded text-xs sm:text-sm whitespace-nowrap ${commentsPage === pageNum ? "bg-uninote-blue text-white" : "bg-muted text-muted-foreground"
+                        className={`px-2 sm:px-3 py-1 rounded text-xs sm:text-sm whitespace-nowrap ${commentsPage === pageNum ? "bg-studyroot-blue text-white" : "bg-muted text-muted-foreground"
                           }`}
                       >
                         {pageNum}

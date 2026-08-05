@@ -119,7 +119,7 @@ const AISummarize: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div className="mb-6">
-          <Link to="/dashboard" className="inline-flex items-center text-sm text-muted-foreground hover:text-uninote-blue transition-colors">
+          <Link to="/dashboard" className="inline-flex items-center text-sm text-muted-foreground hover:text-studyroot-blue transition-colors">
             <ArrowLeft className="h-4 w-4 mr-1" /> Back to Dashboard
           </Link>
         </div>
@@ -127,7 +127,7 @@ const AISummarize: React.FC = () => {
         <div className="text-center mb-10">
           <h1 className="text-3xl md:text-5xl font-extrabold text-foreground mb-4">
             AI Study{" "}
-            <span className="bg-gradient-to-r from-uninote-blue to-uninote-purple bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-studyroot-blue to-studyroot-purple bg-clip-text text-transparent">
               Summarizer
             </span>
           </h1>
@@ -142,7 +142,7 @@ const AISummarize: React.FC = () => {
             <Card className="bg-card border border-border/50 shadow-lg rounded-2xl overflow-hidden">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2 text-xl font-bold">
-                  <Sparkles className="h-5 w-5 text-uninote-purple" />
+                  <Sparkles className="h-5 w-5 text-studyroot-purple" />
                   <span>Configure Summary</span>
                 </CardTitle>
                 <CardDescription>
@@ -154,7 +154,7 @@ const AISummarize: React.FC = () => {
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-muted-foreground">Upload Document</label>
                   {!file ? (
-                    <div className="border border-dashed border-border/60 hover:border-uninote-purple/50 rounded-xl p-6 text-center transition-colors cursor-pointer relative bg-muted/20">
+                    <div className="border border-dashed border-border/60 hover:border-studyroot-purple/50 rounded-xl p-6 text-center transition-colors cursor-pointer relative bg-muted/20">
                       <input
                         type="file"
                         accept=".pdf,.docx,.pptx,.txt"
@@ -168,7 +168,7 @@ const AISummarize: React.FC = () => {
                   ) : (
                     <div className="flex items-center justify-between p-4 bg-muted/40 border border-border/50 rounded-xl">
                       <div className="flex items-center space-x-3 min-w-0">
-                        <FileText className="h-6 w-6 text-uninote-blue flex-shrink-0" />
+                        <FileText className="h-6 w-6 text-studyroot-blue flex-shrink-0" />
                         <span className="text-sm font-medium text-foreground truncate">{file.name}</span>
                       </div>
                       <Button variant="ghost" size="sm" onClick={removeFile} className="h-8 w-8 p-0 rounded-full hover:bg-muted">
@@ -185,14 +185,14 @@ const AISummarize: React.FC = () => {
                     placeholder="Alternatively, paste your study text, paragraphs or syllabus outline here..."
                     value={prompt}
                     onChange={(e) => setPrompt(e.target.value)}
-                    className="min-h-[160px] resize-y rounded-xl border-border bg-background focus:ring-1 focus:ring-uninote-purple"
+                    className="min-h-[160px] resize-y rounded-xl border-border bg-background focus:ring-1 focus:ring-studyroot-purple"
                   />
                 </div>
 
                 <Button
                   onClick={handleSummarize}
                   disabled={loading}
-                  className="w-full bg-gradient-to-r from-uninote-blue to-uninote-purple hover:from-uninote-purple hover:to-uninote-blue text-white font-medium rounded-xl h-11 transition-all duration-300 shadow-md"
+                  className="w-full bg-gradient-to-r from-studyroot-blue to-studyroot-purple hover:from-studyroot-purple hover:to-studyroot-blue text-white font-medium rounded-xl h-11 transition-all duration-300 shadow-md"
                 >
                   {loading ? (
                     <span className="flex items-center justify-center">
@@ -259,7 +259,7 @@ const AISummarize: React.FC = () => {
                         <ul className="space-y-3">
                           {result.summary.keyPoints.map((point, index) => (
                             <li key={index} className="flex items-start bg-muted/10 p-4 rounded-xl border border-border/30">
-                              <span className="flex-shrink-0 w-6 h-6 bg-uninote-blue/10 text-uninote-blue rounded-full flex items-center justify-center font-bold text-xs mr-3 mt-0.5">
+                              <span className="flex-shrink-0 w-6 h-6 bg-studyroot-blue/10 text-studyroot-blue rounded-full flex items-center justify-center font-bold text-xs mr-3 mt-0.5">
                                 {index + 1}
                               </span>
                               <span className="text-foreground leading-normal">{point}</span>
@@ -283,7 +283,7 @@ const AISummarize: React.FC = () => {
                               <tbody>
                                 {result.summary.definitions.map((def, idx) => (
                                   <tr key={idx} className="border-b border-border/35 hover:bg-muted/5 transition-colors">
-                                    <td className="p-3 font-bold text-sm text-uninote-purple align-top w-1/3">{def.term}</td>
+                                    <td className="p-3 font-bold text-sm text-studyroot-purple align-top w-1/3">{def.term}</td>
                                     <td className="p-3 text-sm text-foreground align-top">{def.definition}</td>
                                   </tr>
                                 ))}

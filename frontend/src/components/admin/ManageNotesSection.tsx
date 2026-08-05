@@ -19,7 +19,7 @@ const ManageNotesSection: React.FC<ManageNotesSectionProps> = ({
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-foreground mb-4">
           Manage{" "}
-          <span className="bg-gradient-to-r from-uninote-blue to-uninote-purple bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-studyroot-blue to-studyroot-purple bg-clip-text text-transparent">
             Notes
           </span>
         </h1>

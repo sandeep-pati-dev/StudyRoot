@@ -70,7 +70,7 @@ const Courses = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <nav className="flex items-center space-x-2 text-sm text-muted-foreground">
          
-          <Link to="/dashboard" className="flex items-center hover:text-uninote-blue transition-colors">
+          <Link to="/dashboard" className="flex items-center hover:text-studyroot-blue transition-colors">
             Dashboard
           </Link>
           <ChevronRight className="h-4 w-4" />
@@ -83,7 +83,7 @@ const Courses = () => {
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
             Welcome to Your{" "}
-            <span className="bg-gradient-to-r from-uninote-blue to-uninote-purple bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-studyroot-blue to-studyroot-purple bg-clip-text text-transparent">
               Study Hub
             </span>
           </h1>
@@ -103,7 +103,7 @@ const Courses = () => {
               placeholder="Search courses..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10 pr-4 py-2 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-uninote-purple"
+              className="pl-10 pr-4 py-2 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-studyroot-purple"
             />
           </div>
         </div>
@@ -146,7 +146,7 @@ const Courses = () => {
                     >
                       <IconComponent className="h-8 w-8 text-foreground" />
                     </div>
-                    <CardTitle className="text-2xl font-bold text-foreground group-hover:text-uninote-blue transition-colors">
+                    <CardTitle className="text-2xl font-bold text-foreground group-hover:text-studyroot-blue transition-colors">
                       {course.name}
                     </CardTitle>
 
@@ -155,7 +155,7 @@ const Courses = () => {
                     </div>
                   </CardHeader>
                   <CardContent className="text-center">
-                    <Button className="w-full bg-gradient-to-r from-uninote-blue to-uninote-purple hover:from-uninote-purple hover:to-uninote-blue text-white font-medium rounded-xl transition-all duration-300">
+                    <Button className="w-full bg-gradient-to-r from-studyroot-blue to-studyroot-purple hover:from-studyroot-purple hover:to-studyroot-blue text-white font-medium rounded-xl transition-all duration-300">
                       View Semesters
                     </Button>
                   </CardContent>
