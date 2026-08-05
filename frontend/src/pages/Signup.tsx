@@ -7,7 +7,7 @@ const Signup = () => {
 
   useEffect(() => {
     // Redirect to login page since we handle both login and signup there
-    navigate("/login");
+    navigate("/auth");
   }, [navigate]);
 
   return <Login />;
