@@ -23,14 +23,24 @@ export const generateOTP = () => {
 };
 
 export const sendOtpEmail = async (email, otp) => {
+  console.log(`✉️ Attempting to send OTP email to: ${email}`);
+  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+    console.error("❌ EMAIL_USER or EMAIL_PASS environment variables are missing!");
+    throw new Error("Email configuration is missing on the server.");
+  }
+
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
     },
+    connectionTimeout: 10000, // 10 seconds timeout for establishing connection
+    greetingTimeout: 10000,   // 10 seconds timeout for SMTP greetings
+    socketTimeout: 10000,     // 10 seconds timeout for data transfer
   });
-    const mailOptions = {
+
+  const mailOptions = {
     from: process.env.EMAIL_USER,
     to: email,
     subject: "Your OTP Code",
@@ -63,16 +73,31 @@ export const sendOtpEmail = async (email, otp) => {
   `
   };
 
-  await transporter.sendMail(mailOptions);
+  try {
+    await transporter.sendMail(mailOptions);
+    console.log(`✅ OTP email sent successfully to ${email}`);
+  } catch (error) {
+    console.error(`❌ Error sending OTP email to ${email}:`, error);
+    throw error;
+  }
 };
 
 export const sendMail = async (email, subject, htmlContent) => {
+  console.log(`✉️ Attempting to send custom email to: ${email}`);
+  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+    console.error("❌ EMAIL_USER or EMAIL_PASS environment variables are missing!");
+    throw new Error("Email configuration is missing on the server.");
+  }
+
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
     },
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    socketTimeout: 10000,
   });
 
   const mailOptions = {
@@ -82,7 +107,13 @@ export const sendMail = async (email, subject, htmlContent) => {
     html: htmlContent,
   };
 
-  await transporter.sendMail(mailOptions);
+  try {
+    await transporter.sendMail(mailOptions);
+    console.log(`✅ Custom email sent successfully to ${email}`);
+  } catch (error) {
+    console.error(`❌ Error sending custom email to ${email}:`, error);
+    throw error;
+  }
 };
 
 // API Error class
