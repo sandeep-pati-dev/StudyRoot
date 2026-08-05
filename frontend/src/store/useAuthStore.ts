@@ -77,6 +77,7 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
     } catch (error) {
       console.log("Error in checkAuth: ", error);
       set({ authUser: null });
+      localStorage.removeItem("token"); // Clear token if session check fails
     } finally {
       set({ isCheckingAuth: false });
     }
@@ -85,8 +86,12 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
   signup: async (data: SignupData) => {
     set({ isSigningUp: true });
     try {
-      const res = await axios.post<AuthUser>("/auth/signup", data);
-      set({ authUser: res.data });
+      const res = await axios.post<{ token?: string }>("/auth/signup", data);
+      if (res.data.token) {
+        localStorage.setItem("token", res.data.token); // Save token from signup response
+      }
+      const userRes = await axios.get<AuthUser>("/auth/check");
+      set({ authUser: userRes.data });
       toast.success("Signup successful!");
       return true;
     } catch (error: any) {
@@ -100,7 +105,10 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
   login: async (data: LoginData) => {
     set({ isLoggingIn: true });
     try {
-      await axios.post("/auth/login", data);
+      const res = await axios.post<{ token?: string }>("/auth/login", data);
+      if (res.data.token) {
+        localStorage.setItem("token", res.data.token); // Save token from login response
+      }
       const userRes = await axios.get<AuthUser>("/auth/check");
       set({ authUser: userRes.data });
       toast.success("Logged in successfully");
@@ -118,6 +126,7 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
     try {
       await axios.post("/auth/logout");
       set({ authUser: null });
+      localStorage.removeItem("token"); // Clear token from localStorage
       localStorage.removeItem("isAuthenticated");
       localStorage.removeItem("authUser");
       toast.success("Logged out successfully");
