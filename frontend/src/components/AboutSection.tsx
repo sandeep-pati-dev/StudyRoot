@@ -79,7 +79,7 @@ const AboutSection = () => {
 
             <Button
               size="lg"
-              onClick={() => navigate("/login")}
+              onClick={() => navigate("/auth")}
               className="bg-gradient-to-r from-studyroot-blue to-studyroot-purple hover:from-studyroot-purple hover:to-studyroot-blue text-white px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
             >
               Join StudyRoot Today
