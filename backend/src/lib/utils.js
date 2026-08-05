@@ -1,6 +1,52 @@
 import jwt from 'jsonwebtoken'
 import nodemailer from 'nodemailer'
 import crypto from 'crypto'
+import axios from 'axios' // ✅ Import axios for HTTP API requests
+
+// HTTP mail delivery helper for services like Brevo and Resend (bypasses Render SMTP port block)
+const sendEmailViaHttp = async (email, subject, htmlContent) => {
+  if (process.env.BREVO_API_KEY) {
+    console.log("📨 Sending email via Brevo HTTP API...");
+    await axios.post(
+      "https://api.brevo.com/v3/smtp/email",
+      {
+        sender: { email: process.env.EMAIL_USER || "studyroot18@gmail.com", name: "StudyRoot" },
+        to: [{ email }],
+        subject,
+        htmlContent,
+      },
+      {
+        headers: {
+          "api-key": process.env.BREVO_API_KEY,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return true;
+  }
+  
+  if (process.env.RESEND_API_KEY) {
+    console.log("📨 Sending email via Resend HTTP API...");
+    await axios.post(
+      "https://api.resend.com/emails",
+      {
+        from: "StudyRoot <onboarding@resend.dev>",
+        to: [email],
+        subject,
+        html: htmlContent,
+      },
+      {
+        headers: {
+          "Authorization": `Bearer ${process.env.RESEND_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return true;
+  }
+  
+  return false;
+};
 
 export const generateToken = async (userId, res) => {
     const token = jwt.sign({ userId }, process.env.JWT_SECRET, {
@@ -24,27 +70,8 @@ export const generateOTP = () => {
 
 export const sendOtpEmail = async (email, otp) => {
   console.log(`✉️ Attempting to send OTP email to: ${email}`);
-  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-    console.error("❌ EMAIL_USER or EMAIL_PASS environment variables are missing!");
-    throw new Error("Email configuration is missing on the server.");
-  }
 
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-    connectionTimeout: 10000, // 10 seconds timeout for establishing connection
-    greetingTimeout: 10000,   // 10 seconds timeout for SMTP greetings
-    socketTimeout: 10000,     // 10 seconds timeout for data transfer
-  });
-
-  const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to: email,
-    subject: "Your OTP Code",
-    html: `
+  const htmlContent = `
     <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #eee; border-radius: 8px; background-color: #f9f9f9;">
       <h2 style="text-align: center; color: #333;">🔐 Email Verification</h2>
       <p style="font-size: 16px; color: #555;">Hello,</p>
@@ -70,20 +97,67 @@ export const sendOtpEmail = async (email, otp) => {
         &copy; ${new Date().getFullYear()} StudyRoot. All rights reserved.
       </p>
     </div>
-  `
+  `;
+
+  // 1. Try sending via Web API over HTTPS first (avoids SMTP block on Render)
+  try {
+    const sent = await sendEmailViaHttp(email, "Your OTP Code", htmlContent);
+    if (sent) {
+      console.log(`✅ OTP email sent successfully via HTTP API to ${email}`);
+      return;
+    }
+  } catch (httpError) {
+    console.error(`❌ HTTP email API failed:`, httpError?.response?.data || httpError.message);
+  }
+
+  // 2. Fall back to standard SMTP transport
+  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+    console.error("❌ EMAIL_USER or EMAIL_PASS environment variables are missing!");
+    throw new Error("Email configuration is missing on the server.");
+  }
+
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    socketTimeout: 10000,
+  });
+
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: email,
+    subject: "Your OTP Code",
+    html: htmlContent
   };
 
   try {
     await transporter.sendMail(mailOptions);
-    console.log(`✅ OTP email sent successfully to ${email}`);
+    console.log(`✅ OTP email sent successfully via SMTP to ${email}`);
   } catch (error) {
-    console.error(`❌ Error sending OTP email to ${email}:`, error);
+    console.error(`❌ SMTP connection failed to ${email}:`, error);
     throw error;
   }
 };
 
 export const sendMail = async (email, subject, htmlContent) => {
   console.log(`✉️ Attempting to send custom email to: ${email}`);
+
+  // 1. Try sending via Web API over HTTPS first (avoids SMTP block on Render)
+  try {
+    const sent = await sendEmailViaHttp(email, subject, htmlContent);
+    if (sent) {
+      console.log(`✅ Custom email sent successfully via HTTP API to ${email}`);
+      return;
+    }
+  } catch (httpError) {
+    console.error(`❌ HTTP email API failed:`, httpError?.response?.data || httpError.message);
+  }
+
+  // 2. Fall back to standard SMTP transport
   if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
     console.error("❌ EMAIL_USER or EMAIL_PASS environment variables are missing!");
     throw new Error("Email configuration is missing on the server.");
@@ -109,9 +183,9 @@ export const sendMail = async (email, subject, htmlContent) => {
 
   try {
     await transporter.sendMail(mailOptions);
-    console.log(`✅ Custom email sent successfully to ${email}`);
+    console.log(`✅ Custom email sent successfully via SMTP to ${email}`);
   } catch (error) {
-    console.error(`❌ Error sending custom email to ${email}:`, error);
+    console.error(`❌ SMTP connection failed to ${email}:`, error);
     throw error;
   }
 };
