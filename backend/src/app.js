@@ -10,7 +10,8 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:5174",
-  "http://localhost:3000"
+  "http://localhost:3000",
+  "https://study-root-murex.vercel.app" // ✅ Added user's deployed Vercel domain
 ];
 
 if (process.env.FRONTEND_URL) {
@@ -25,11 +26,15 @@ app.use(
       if (!origin) return callback(null, true);
       
       const sanitizedOrigin = origin.replace(/\/$/, "");
-      if (allowedOrigins.includes(sanitizedOrigin)) {
+      
+      // ✅ Allow if in whitelist or matches any Vercel deployment subdomain (*.vercel.app)
+      const isAllowed = allowedOrigins.includes(sanitizedOrigin) || /\.vercel\.app$/.test(sanitizedOrigin);
+      
+      if (isAllowed) {
         callback(null, true);
       } else {
         console.warn(`⚠️ CORS blocked for origin: ${origin}`);
-        callback(new Error("Not allowed by CORS"));
+        callback(null, false); // ✅ Return false instead of Error to avoid preflight 500 crash
       }
     },
     credentials: true,
