@@ -6,9 +6,32 @@ import cors from "cors";
 const app = express();
 
 // Middlewares
+// CORS Configuration supporting multiple origins and trailing slashes
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:5174",
+  "http://localhost:3000"
+];
+
+if (process.env.FRONTEND_URL) {
+  const urls = process.env.FRONTEND_URL.split(",").map(url => url.trim().replace(/\/$/, ""));
+  allowedOrigins.push(...urls);
+}
+
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:5173",
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like mobile apps, curl, or Postman)
+      if (!origin) return callback(null, true);
+      
+      const sanitizedOrigin = origin.replace(/\/$/, "");
+      if (allowedOrigins.includes(sanitizedOrigin)) {
+        callback(null, true);
+      } else {
+        console.warn(`⚠️ CORS blocked for origin: ${origin}`);
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );
